@@ -9,7 +9,7 @@ interface User {
 }
 
 const UserTable = async ({ sortOrder }: { sortOrder: string }) => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const res = await fetch("https://jsonplaceholder.typicode.com/users",{cache: "no-store"});
   const users: User[] = await res.json();
   const sortedUsers = sort(users).asc([(u) => (sortOrder === "email" ? u.email : u.name)]);
   return (
